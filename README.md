@@ -1,6 +1,6 @@
 # Project 7 - WordPress Pentesting
 
-Time spent: **X** hours spent in total
+Time spent: **14** hours spent in total
 
 > Objective: Find, analyze, recreate, and document **five vulnerabilities** affecting an old version of WordPress
 
@@ -15,7 +15,7 @@ Time spent: **X** hours spent in total
 
   - [ ] Steps to recreate: First you need to create a new post and go to the text part. Paste this into it: <a title="&quot; style=&quot;position:absolute;top:0;left:0;width:100%;height:100%;display:block;&quot; onmouseover=alert(1)//" href="/wp-admin/">Test</a> After that you publish it.
   - [ ] Affected source code: 
-    - [Link 1](https://core.trac.wordpress.org/changeset/33549)
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-includes/theme.php?rev=32282)
 ### 2. (Required) XSS Unauthenticated Stored Cross-Site Scripting
   - [ ] Summary: When a comment is above 64kb, something like this: <a title='x onmouseover=alert(unescape(/hello%20world/.source))
 style=position:absolute;left:0;top:0;width:5000px;height:5000px
@@ -27,16 +27,18 @@ style=position:absolute;left:0;top:0;width:5000px;height:5000px
 
   - [ ] Steps to recreate: Post a comment and use the format given in summary. The comment needs to be bigger than 64kb
   - [ ] Affected source code:
-    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
-### 3. (Required) Vulnerability Name or ID
-  - [ ] Summary: 
-    - Vulnerability types:
-    - Tested in version:
-    - Fixed in version: 
-  - [ ] GIF Walkthrough: 
-  - [ ] Steps to recreate: 
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-includes/wp-db.php?rev=32282)
+### 3. (Required) XSS Authenticated Stored Cross-Site Scripting
+  - [ ] Summary: A pop up is presented after the post is created and visited. 
+    - Vulnerability types: XSS
+    - Tested in version: 4.2
+    - Fixed in version: 4.2.3
+  - [ ] GIF Walkthrough: ![XSS3](https://user-images.githubusercontent.com/74270386/161867049-0b8944c3-8ba8-464f-86b5-19d775ecfeb3.gif)
+
+  - [ ] Steps to recreate: Create a post then go the text section and paste : <a href="</a><a title=" onmouseover=alert('test')  ">link</a> After publishing it, the post will create a pop up. 
   - [ ] Affected source code:
-    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-includes/kses.php?rev=32282)
+    - [Link 2](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-includes/shortcodes.php?rev=32282)
 ### 4. (Optional) Vulnerability Name or ID
   - [ ] Summary: 
     - Vulnerability types:
